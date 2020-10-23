@@ -7,6 +7,8 @@ import ReactPlayer from "react-player";
 
 import { urlPath } from "../helpers/globalVariables";
 
+import AddDropdown from "../components/AddDropdown";
+
 const Container = styled.div`
   padding: 2rem;
   display: flex;
@@ -16,7 +18,7 @@ const Container = styled.div`
   width: 90%;
 `;
 const Content = styled.div`
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -85,6 +87,7 @@ const Details = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 1rem;
 `;
 
 const MovieDetails = props => {
@@ -149,6 +152,7 @@ const MovieDetails = props => {
           </a>
           <div>{overview}</div>
         </Details>
+        <AddDropdown />
       </Content>
     </Container>
   );

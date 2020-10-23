@@ -4,11 +4,18 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import { Input, Button, InputLabel } from "@material-ui/core";
 
-import { getMovie } from "../redux/movies/actions";
-import MovieList from "../components/MovieList";
+import { getMovie } from "../../redux/movies/actions";
+import MovieList from "./MovieList";
+import Searchbar from "../../components/Searchbar";
 
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 const Content = styled.div`
-  width: 90%;
+  width: 100%;
 `;
 
 const Home = props => {
@@ -26,7 +33,7 @@ const Home = props => {
     };
 
     fetchData();
-  }, [url]);
+  }, [params]);
 
   const handleChange = e => {
     setSearch(e.target.value);
@@ -48,26 +55,20 @@ const Home = props => {
     movieList: movies,
     getMovie
   };
+
+  const searchProps = {
+    search,
+    handleChange,
+    handleKeypress,
+    handleSubmit
+  };
   return (
-    <div>
-      <div>
-        <InputLabel>
-          Find a movie:
-          <input
-            value={search}
-            onChange={handleChange}
-            onKeyDown={handleKeypress}
-          />
-        </InputLabel>
-        <button onClick={handleSubmit} type="submit">
-          Search
-        </button>
-      </div>
-      <div>{title}</div>
+    <Container>
+      <Searchbar {...searchProps} />
       <Content>
         <MovieList {...movieProps} />
       </Content>
-    </div>
+    </Container>
   );
 };
 
